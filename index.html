@@ -25,6 +25,13 @@
             background:#ccc;
             padding: 10px;
         }
+
+        input:active, input.active {
+            background-color: red;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
 /* 
         iframe {
             display: none;
@@ -36,15 +43,21 @@
         <div class="container h-100">
             <div class="row h-50 align-items-center">
                 <div class="col-sm text-center tile">
-                    <input id="vid1" type="image" src="https://at-cdn-s01.audiotool.com/2016/01/13/documents/KfOYc4hqn3x4iJwmDAi6n06cQUpW/0/cover256x256-dd07c33fb218493eb0953b16fb1c4dc1.jpg" alt="Submit" width="300" height="300">
+                    <input class="vid" data-vid="k85mRPqvMbE" type="image" src="https://at-cdn-s01.audiotool.com/2016/01/13/documents/KfOYc4hqn3x4iJwmDAi6n06cQUpW/0/cover256x256-dd07c33fb218493eb0953b16fb1c4dc1.jpg" alt="Submit" width="300" height="300">
                 </div>
                 <div class="col-sm text-center tile">
-                    <input id="vid2" type="image" src="https://m.media-amazon.com/images/I/61uyJ3KNLuL._AA256_.jpg" alt="Submit" width="300" height="300">
+                    <input class="vid" data-vid="BQRuM4poEQs" type="image" src="https://m.media-amazon.com/images/I/61uyJ3KNLuL._AA256_.jpg" alt="Submit" width="300" height="300">
+                </div>
+                <div class="col-sm text-center tile">
+                    <input class="vid" data-vid="_tdYY6lUw9g" type="image" src="https://m.media-amazon.com/images/I/51Q6vFSy1NL._AA256_.jpg" alt="Submit" width="300" height="300">
                 </div>
             </div>
             <div class="row h-50 align-items-center">
                 <div class="col-sm text-center tile">
-                    <input id="vid3" type="image" src="https://m.media-amazon.com/images/I/51Q6vFSy1NL._AA256_.jpg" alt="Submit" width="300" height="300">
+                    <input class="vid" data-vid="x6Q7c9RyMzk" type="image" src="https://c-sf.smule.com/rs-s95/arr/ec/9b/687bafd8-54a9-4082-8f7e-34c4a002577b_256.jpg" alt="Submit" width="300" height="300">
+                </div>
+                <div class="col-sm text-center tile">
+                    <input class="vid" data-vid="XqZsoesa55w" type="image" src="https://c-sf.smule.com/rs-s-sf-4/arr/55/b8/6b214f8f-d020-4960-9b41-2cf4d0c3ec3b_256.jpg" alt="Submit" width="300" height="300">
                 </div>
                 <div class="col-sm text-center tile"><input id="stop" type="image" src="https://www.brainsupportnetwork.org/wp-content/uploads/stopsign.png" alt="Submit" width="300" height="300"></div>
             </div>
@@ -101,18 +114,11 @@
           player.stopVideo();
         }
 
-          $("#vid1").click(function(){
-            player.loadVideoById({'videoId': 'k85mRPqvMbE', 'startSeconds': 0});
-            player.playVideo();
-          });
-
-          $("#vid2").click(function(){
-            player.loadVideoById({'videoId': 'BQRuM4poEQs', 'startSeconds': 0});
-            player.playVideo();
-          });
-
-          $("#vid3").click(function(){
-            player.loadVideoById({'videoId': '_tdYY6lUw9g', 'startSeconds': 0});
+          $(".vid").click(function(){
+            $('.vid').removeClass('active');
+            $(this).addClass('active');
+            var vidId = $(this).data('vid');
+            player.loadVideoById({'videoId': vidId, 'startSeconds': 0});
             player.playVideo();
           });
 
