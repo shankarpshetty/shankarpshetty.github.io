@@ -1,1 +1,120 @@
-Hello World
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <style>
+        html,body{
+            height:100%;
+        }
+
+        body{
+            background:#000;
+            color:#333;
+            text-shadow:#fff 0px 1px 0px;
+            font-family:"Myriad Pro", sans-serif;
+        }
+
+        input {
+            background:#ccc;
+            padding: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="top-section"> -->
+        <div class="container h-100">
+            <div class="row h-50 align-items-center">
+                <div class="col-sm text-center tile">
+                    <input id="vid1" type="image" src="https://at-cdn-s01.audiotool.com/2016/01/13/documents/KfOYc4hqn3x4iJwmDAi6n06cQUpW/0/cover256x256-dd07c33fb218493eb0953b16fb1c4dc1.jpg" alt="Submit" width="300" height="300">
+                </div>
+                <div class="col-sm text-center tile">
+                    <input id="vid2" type="image" src="https://m.media-amazon.com/images/I/61uyJ3KNLuL._AA256_.jpg" alt="Submit" width="300" height="300">
+                </div>
+            </div>
+            <div class="row h-50 align-items-center">
+                <div class="col-sm text-center tile">
+                    <input id="vid3" type="image" src="https://m.media-amazon.com/images/I/51Q6vFSy1NL._AA256_.jpg" alt="Submit" width="300" height="300">
+                </div>
+                <div class="col-sm text-center tile"><input id="stop" type="image" src="https://www.brainsupportnetwork.org/wp-content/uploads/stopsign.png" alt="Submit" width="300" height="300"></div>
+            </div>
+        </div>
+        <div id="player"></div>
+    <!-- </div> -->
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+  
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            // videoId: 'M7lc1UVf-VE',
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
+  
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+          event.target.playVideo();
+        }
+  
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+        function onPlayerStateChange(event) {
+          if (event.data == YT.PlayerState.PLAYING && !done) {
+            setTimeout(stopVideo, 6000);
+            done = true;
+          }
+        }
+        function stopVideo() {
+          player.stopVideo();
+        }
+
+          $("#vid1").click(function(){
+            player.loadVideoById({'videoId': 'k85mRPqvMbE', 'startSeconds': 0});
+            player.playVideo();
+          });
+
+          $("#vid2").click(function(){
+            player.loadVideoById({'videoId': 'BQRuM4poEQs', 'startSeconds': 0});
+            player.playVideo();
+          });
+
+          $("#vid3").click(function(){
+            player.loadVideoById({'videoId': '_tdYY6lUw9g', 'startSeconds': 0});
+            player.playVideo();
+          });
+
+          $("#stop").click(function(){
+            player.stopVideo();
+          });
+      </script>
+  </body>
+</html>
